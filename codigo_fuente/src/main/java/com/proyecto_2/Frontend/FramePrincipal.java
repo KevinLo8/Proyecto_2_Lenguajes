@@ -14,7 +14,7 @@ public class FramePrincipal extends JFrame {
     private final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
     private final int SIZE_HEIGHT = 900;
     private final int SIZE_WIDTH = (SIZE_HEIGHT * 16) / 9;
-    public final int GAP = 50;
+    public final int GAP = 25;
     private final int PANEL_HEIGHT = SIZE_HEIGHT - GAP * 4;
     private final int PANEL_WIDTH = SIZE_WIDTH - GAP * 4;
 
@@ -30,6 +30,7 @@ public class FramePrincipal extends JFrame {
         setBounds((int) ((DIM.getWidth() - SIZE_WIDTH) / 2), (int) ((DIM.getHeight() - SIZE_HEIGHT) / 2),
                 SIZE_WIDTH, SIZE_HEIGHT);
         setTitle("Analizador Léxico");
+        setResizable(false);
 
         JMenuBar jMenuBar = new JMenuBar();
         JMenu jM1 = new JMenu("Archivo");
@@ -65,7 +66,7 @@ public class FramePrincipal extends JFrame {
 
         layout.setVerticalGroup(
                 layout.createSequentialGroup()
-                        .addContainerGap(GAP, Short.MAX_VALUE)
+                        .addContainerGap(GAP / 2, Short.MAX_VALUE)
                         .addComponent(panel)
                         .addContainerGap(GAP, Short.MAX_VALUE));
 
