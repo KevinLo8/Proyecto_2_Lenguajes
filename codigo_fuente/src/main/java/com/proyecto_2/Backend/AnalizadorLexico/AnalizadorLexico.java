@@ -383,13 +383,19 @@ public class AnalizadorLexico {
         lista.add(token);
     }
 
-    private void addListaErrores(String palabra, int fila, int columna) {
+    private void addListaErrores(String palabra, int fila, int columna, int tamaño) {
         Token token = new Token();
         
         token.setToken(palabra);
         token.setTipo("Error");
         token.setFila(fila + 1);
         token.setColumna(columna + 1);
+
+        if (tamaño > 1) {
+            token.setDescripcion("Token no reconocido");
+        } else {
+            token.setDescripcion("Carácter no reconocido");
+        }
 
         listaErrores.add(token);
     }
@@ -815,7 +821,7 @@ public class AnalizadorLexico {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { addListaErrores(yytext(), yyline, yycolumn);
+            { addListaErrores(yytext(), yyline, yycolumn, yylength());
             }
           // fall through
           case 18: break;
