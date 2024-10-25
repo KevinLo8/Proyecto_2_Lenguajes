@@ -26,13 +26,19 @@ import com.proyecto_2.Backend.Token.Token;
         lista.add(token);
     }
 
-    private void addListaErrores(String palabra, int fila, int columna) {
+    private void addListaErrores(String palabra, int fila, int columna, int tamaño) {
         Token token = new Token();
         
         token.setToken(palabra);
         token.setTipo("Error");
         token.setFila(fila + 1);
         token.setColumna(columna + 1);
+
+        if (tamaño > 1) {
+            token.setDescripcion("Token no reconocido");
+        } else {
+            token.setDescripcion("Carácter no reconocido");
+        }
 
         listaErrores.add(token);
     }
@@ -91,4 +97,4 @@ SALTO = [\r\t\b\n]
 {ESPACIOS}                                  { /*Ignore*/ }
 {SALTO}                                     { /*Ignore*/ }
 
-.                                           { addListaErrores(yytext(), yyline, yycolumn); }
+.                                           { addListaErrores(yytext(), yyline, yycolumn, yylength()); }
