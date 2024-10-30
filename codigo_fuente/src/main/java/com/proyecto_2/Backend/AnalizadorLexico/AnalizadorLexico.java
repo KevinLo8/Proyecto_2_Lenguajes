@@ -11,7 +11,6 @@ import java.util.List;
 import com.proyecto_2.Backend.Token.Token;
 
 
-@SuppressWarnings("fallthrough")
 public class AnalizadorLexico {
 
   /** This character denotes the end of file. */
