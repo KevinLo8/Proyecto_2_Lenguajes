@@ -20,6 +20,9 @@ import com.proyecto_2.Frontend.FramePrincipal;
 public class PanelAreaTexto extends JPanel {
 
     private List<Token> tokens;
+    private List<Token> tablas;
+    private List<Token> tablasModificadas;
+    private List<Integer> cantidades;
 
     private int panelHeigt;
     private int panelWidth;
@@ -30,6 +33,8 @@ public class PanelAreaTexto extends JPanel {
 
     public PanelAreaTexto(FramePrincipal framePrincipal, int panelHeigt, int panelWidth) {
         tokens = new ArrayList<>();
+        tablas = new ArrayList<>();
+        tablasModificadas = new ArrayList<>();
         gap = framePrincipal.GAP / 2;
         this.panelHeigt = panelHeigt - gap * 5;
         this.panelWidth = panelWidth - gap * 2;
@@ -87,6 +92,18 @@ public class PanelAreaTexto extends JPanel {
         return tokens;
     }
 
+    public List<Token> getTablas() {
+        return tablas;
+    }
+
+    public List<Token> getTablasModificadas() {
+        return tablasModificadas;
+    }
+
+    public List<Integer> getCantidades() {
+        return cantidades;
+    }
+
     public void analizarTexto() {
         StringReader reader = new StringReader(textArea.getText());
         AnalizadorLexico aLexico = new AnalizadorLexico(reader);
@@ -100,6 +117,10 @@ public class PanelAreaTexto extends JPanel {
 
         AnalizadorSintactico aSintactico = new AnalizadorSintactico(tokens);
         aSintactico.analizar();
+
+        tablas = aSintactico.getTablas();
+        tablasModificadas = aSintactico.getTablasModificadas();
+        cantidades = aSintactico.getCantidades();
 
         agregarTextoColor();
 
@@ -149,12 +170,12 @@ public class PanelAreaTexto extends JPanel {
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
-            
+
             columna = columna + token.getToken().length();
 
         }
-    
-        for (int i = saltos.size() - 1; i > -1 ; i-- ) {
+
+        for (int i = saltos.size() - 1; i > -1; i--) {
             try {
                 document.replace(saltos.get(i), 1, "\n", null);
             } catch (BadLocationException e) {

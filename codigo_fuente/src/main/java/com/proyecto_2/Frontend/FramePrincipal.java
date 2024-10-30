@@ -47,15 +47,24 @@ public class FramePrincipal extends JFrame {
         JMenuItem jMI2 = new JMenuItem("Salir");
         JMenuItem jMI3 = new JMenuItem("Reporte De Errores Léxicos");
         JMenuItem jMI4 = new JMenuItem("Reporte De Errores Sintacticos");
+        JMenuItem jMI5 = new JMenuItem("Reporte De Tablas Encontradas");
+        JMenuItem jMI6 = new JMenuItem("Reporte De Tablas Modificadas");
+        JMenuItem jMI7 = new JMenuItem("Reporte De Numero de Operaciones");
 
         jMI2.addActionListener(new ActionListenerSalir());
         jMI3.addActionListener(new ActionListenerReporteLexico(this));
         jMI4.addActionListener(new ActionListenerReporteSintactico(this));
+        jMI5.addActionListener(new ActionListenerReporteTablas(this));
+        jMI6.addActionListener(new ActionListenerReporteTablasModificadas(this));
+        jMI7.addActionListener(new ActionListenerReporteNumeroOperaciones(this));
 
         jM1.add(jMI1);
         jM1.add(jMI2);
         jM2.add(jMI3);
         jM2.add(jMI4);
+        jM2.add(jMI5);
+        jM2.add(jMI6);
+        jM2.add(jMI7);
 
         setJMenuBar(jMenuBar);
 
@@ -110,6 +119,42 @@ public class FramePrincipal extends JFrame {
 
         PanelErroresSintacticos pES = new PanelErroresSintacticos(this, PANEL_HEIGHT, PANEL_WIDTH, errores);
         panel.add(pES);
+
+        repaint();
+        validate();
+    }
+
+    public void GenerarReporteTablas() {
+        panel.removeAll();
+
+        List<Token> tokens = pAT.getTablas();
+
+        PanelTablasEncontradas pTE = new PanelTablasEncontradas(this, PANEL_HEIGHT, PANEL_WIDTH, tokens);
+        panel.add(pTE);
+
+        repaint();
+        validate();
+    }
+
+    public void GenerarReporteTablasModificadas() {
+        panel.removeAll();
+
+        List<Token> tokens = pAT.getTablasModificadas();
+
+        PanelTablasModificadas pTM = new PanelTablasModificadas(this, PANEL_HEIGHT, PANEL_WIDTH, tokens);
+        panel.add(pTM);
+
+        repaint();
+        validate();
+    }
+
+    public void GenerarReporteNumeroOperaciones() {
+        panel.removeAll();
+
+        List<Integer> cantidades = pAT.getCantidades();
+
+        PanelNumeroOperaciones pNO = new PanelNumeroOperaciones(this, PANEL_HEIGHT, PANEL_WIDTH, cantidades);
+        panel.add(pNO);
 
         repaint();
         validate();
