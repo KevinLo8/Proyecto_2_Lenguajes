@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.text.*;
 
 import com.proyecto_2.Backend.ActionListeners.ActionListenerAnalizar;
 import com.proyecto_2.Backend.AnalizadorLexico.AnalizadorLexico;
@@ -23,7 +24,8 @@ public class PanelAreaTexto extends JPanel {
     private int panelHeigt;
     private int panelWidth;
     private int gap;
-    private JTextArea textArea;
+    private JTextPane textArea;
+    private JTextArea lines;
     private JScrollPane jsp;
 
     public PanelAreaTexto(FramePrincipal framePrincipal, int panelHeigt, int panelWidth) {
@@ -37,8 +39,8 @@ public class PanelAreaTexto extends JPanel {
 
     private void initComponent() {
         jsp = new JScrollPane();
-        textArea = new JTextArea();
-        JTextArea lines = new JTextArea("1");
+        textArea = new JTextPane();
+        lines = new JTextArea("1");
 
         jsp.setPreferredSize(new Dimension(panelWidth, panelHeigt));
 
@@ -99,5 +101,69 @@ public class PanelAreaTexto extends JPanel {
         AnalizadorSintactico aSintactico = new AnalizadorSintactico(tokens);
         aSintactico.analizar();
 
+        agregarTextoColor();
+
     }
+
+    private void agregarTextoColor() {
+        textArea.setText("");
+
+        DefaultStyledDocument document = new DefaultStyledDocument();
+        textArea.setStyledDocument(document);
+        StyleContext context = new StyleContext();
+
+        List<Integer> saltos = new ArrayList<>();
+        int linea = 1;
+        int columna = 1;
+
+        for (int i = 0; i < tokens.size(); i++) {
+            Token token = tokens.get(i);
+
+            try {
+                while (token.getColumna() > columna || token.getFila() > linea) {
+                    if (token.getColumna() > columna) {
+                        int start = textArea.getText().length();
+                        document.insertString(start, " ", null);
+                        columna++;
+                    }
+                    if (token.getFila() > linea) {
+                        int start = textArea.getText().length();
+                        document.insertString(start, "♠", null);
+                        linea++;
+                        columna = 1;
+                        saltos.add(start);
+                    }
+                }
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+
+            int start = textArea.getText().length();
+
+            Style style = context.addStyle("Color", null);
+
+            StyleConstants.setForeground(style, token.getColor());
+
+            try {
+                document.insertString(start, token.getToken(), style);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+            
+            columna = columna + token.getToken().length();
+
+        }
+    
+        for (int i = saltos.size() - 1; i > -1 ; i-- ) {
+            try {
+                document.replace(saltos.get(i), 1, "\n", null);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        }
+
+        DocumentListenerNumeracion docLisNum = new DocumentListenerNumeracion(textArea, lines);
+        textArea.getDocument().addDocumentListener(docLisNum);
+    }
+
 }

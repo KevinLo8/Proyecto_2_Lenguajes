@@ -5,9 +5,10 @@ import javax.swing.event.*;
 import javax.swing.text.Element;
 
 public class DocumentListenerNumeracion implements DocumentListener {
-    private JTextArea textArea, lines;
+    private JTextPane textArea;
+    private JTextArea lines;
 
-    public DocumentListenerNumeracion(JTextArea textArea, JTextArea lines) {
+    public DocumentListenerNumeracion(JTextPane textArea, JTextArea lines) {
         this.textArea = textArea;
         this.lines = lines;
     }
