@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -17,13 +18,16 @@ import com.proyecto_2.Frontend.FramePrincipal;
 
 public class PanelAreaTexto extends JPanel {
 
+    private List<Token> tokens;
+
     private int panelHeigt;
     private int panelWidth;
     private int gap;
     private JTextArea textArea;
     private JScrollPane jsp;
 
-    public PanelAreaTexto(int panelHeigt, int panelWidth, FramePrincipal framePrincipal) {
+    public PanelAreaTexto(FramePrincipal framePrincipal, int panelHeigt, int panelWidth) {
+        tokens = new ArrayList<>();
         gap = framePrincipal.GAP / 2;
         this.panelHeigt = panelHeigt - gap * 5;
         this.panelWidth = panelWidth - gap * 2;
@@ -77,6 +81,10 @@ public class PanelAreaTexto extends JPanel {
                         .addContainerGap(gap, Short.MAX_VALUE));
     }
 
+    public List<Token> getTokens() {
+        return tokens;
+    }
+
     public void analizarTexto() {
         StringReader reader = new StringReader(textArea.getText());
         AnalizadorLexico aLexico = new AnalizadorLexico(reader);
@@ -86,10 +94,10 @@ public class PanelAreaTexto extends JPanel {
             e.printStackTrace();
         }
 
-        List<Token> tokens = aLexico.getLista();        
+        tokens = aLexico.getLista();
 
         AnalizadorSintactico aSintactico = new AnalizadorSintactico(tokens);
         aSintactico.analizar();
-        
+
     }
 }

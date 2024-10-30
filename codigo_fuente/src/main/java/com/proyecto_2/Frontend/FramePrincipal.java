@@ -1,15 +1,19 @@
 package com.proyecto_2.Frontend;
 
 import java.awt.*;
+import java.util.List;
 
 import javax.swing.*;
 
-import com.proyecto_2.Backend.ActionListeners.ActionListenerSalir;
-import com.proyecto_2.Frontend.Panels.PanelAreaTexto;
+import com.proyecto_2.Backend.ActionListeners.*;
+import com.proyecto_2.Backend.ReportesData.ReportesData;
+import com.proyecto_2.Backend.Token.Token;
+import com.proyecto_2.Frontend.Panels.*;
 
 public class FramePrincipal extends JFrame {
 
     private JPanel panel;
+    private PanelAreaTexto pAT;
 
     private final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
     private final int SIZE_HEIGHT = 900;
@@ -41,24 +45,24 @@ public class FramePrincipal extends JFrame {
 
         JMenuItem jMI1 = new JMenuItem("Cargar Archivo");
         JMenuItem jMI2 = new JMenuItem("Salir");
-        JMenuItem jMI3 = new JMenuItem("Reporte De Tokens");
-        JMenuItem jMI4 = new JMenuItem("Reporte De Errores");
-        JMenuItem jMI5 = new JMenuItem("Reporte De Optimización");
+        JMenuItem jMI3 = new JMenuItem("Reporte De Errores Léxicos");
+        JMenuItem jMI4 = new JMenuItem("Reporte De Errores Sintacticos");
 
         jMI2.addActionListener(new ActionListenerSalir());
+        jMI3.addActionListener(new ActionListenerReporteLexico(this));
+        jMI4.addActionListener(new ActionListenerReporteSintactico(this));
 
         jM1.add(jMI1);
         jM1.add(jMI2);
         jM2.add(jMI3);
         jM2.add(jMI4);
-        jM2.add(jMI5);
 
         setJMenuBar(jMenuBar);
 
         panel = new JPanel();
         panel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT - jMenuBar.getHeight()));
 
-        PanelAreaTexto pAT = new PanelAreaTexto(PANEL_HEIGHT, PANEL_WIDTH, this);
+        pAT = new PanelAreaTexto(this, PANEL_HEIGHT, PANEL_WIDTH);
         panel.add(pAT);
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -77,6 +81,46 @@ public class FramePrincipal extends JFrame {
                         .addContainerGap(GAP, Short.MAX_VALUE));
 
         pack();
+    }
+
+    public void GenerarReporteLexico() {
+        panel.removeAll();
+
+        List<Token> tokens = pAT.getTokens();
+        List<Token> errores;
+
+        ReportesData rD = new ReportesData();
+        errores = rD.generarListaErroresLexicos(tokens);
+
+        PanelErroresLexicos pEL = new PanelErroresLexicos(this, PANEL_HEIGHT, PANEL_WIDTH, errores);
+        panel.add(pEL);
+
+        repaint();
+        validate();
+    }
+
+    public void GenerarReporteSintactico() {
+        panel.removeAll();
+
+        List<Token> tokens = pAT.getTokens();
+        List<Token> errores;
+
+        ReportesData rD = new ReportesData();
+        errores = rD.generarListaErroresSintacticos(tokens);
+
+        PanelErroresSintacticos pES = new PanelErroresSintacticos(this, PANEL_HEIGHT, PANEL_WIDTH, errores);
+        panel.add(pES);
+
+        repaint();
+        validate();
+    }
+
+    public void Regresar() {
+        panel.removeAll();
+        panel.add(pAT);
+
+        repaint();
+        validate();
     }
 
 }
