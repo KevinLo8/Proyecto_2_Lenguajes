@@ -24,7 +24,7 @@ public class AnalizadorSintactico {
             do {
                 tokensComando.add(tokens.get(i));
                 i++;
-            } while (!tokens.get(i - 1).getToken().equals(";") && !tokens.get(i - 1).getTipo().equals("Signo")
+            } while ((!tokens.get(i - 1).getToken().equals(";") || !tokens.get(i - 1).getTipo().equals("Signo"))
                     && i < tokens.size());
 
             if (tokensComando.get(numActual).getTipo().equals("Palabra Reservada")) {
@@ -131,9 +131,9 @@ public class AnalizadorSintactico {
         tipo = tokensComando.get(numActual).getTipo();
         palabra = tokensComando.get(numActual).getToken();
         if (tipo.equals("Palabra Reservada")) {
+            addNum();
 
             if (palabra.equals("PRIMARY")) {
-                addNum();
 
                 tipo = tokensComando.get(numActual).getTipo();
                 palabra = tokensComando.get(numActual).getToken();
@@ -260,7 +260,7 @@ public class AnalizadorSintactico {
 
         } else if (palabra.equals("ALTER") || palabra.equals("DROP")) {
 
-            String palabra2 = tokensComando.get(numActual - 2).getToken();
+            String palabra2 = tokensComando.get(numActual).getToken();
             addNum();
 
             tipo = tokensComando.get(numActual).getTipo();
@@ -294,7 +294,6 @@ public class AnalizadorSintactico {
         } else {
             throw new SyntacticErrorException("Se esperaba un token \"ADD\", \"ALTER\" o \"DROP\"");
         }
-        addNum();
 
         revisarSigno(tokensComando, ";");
 
@@ -369,15 +368,8 @@ public class AnalizadorSintactico {
         int cantidadDatos = 0;
         do {
 
-            tipo = tokensComando.get(numActual).getTipo();
-            palabra = tokensComando.get(numActual).getToken();
-            if (tipo.equals("Identificador")) {
-                revisarEstructuraDeclaracion(tokensComando);
-            } else if (tipo.equals("Palabra Reservada")) {
-                revisarEstructuraLlaves(tokensComando);
-            } else {
-                throw new SyntacticErrorException("Secuencia de token invalida");
-            }
+            revisarIdentificador(tokensComando);
+            cantidadDatos++;
 
             revisarDobleSigno(tokensComando, ",", ")");
 
@@ -394,6 +386,8 @@ public class AnalizadorSintactico {
         addNum();
 
         do {
+
+            revisarSigno(tokensComando, "(");
 
             for (int i = 0; i < cantidadDatos - 1; i++) {
 
@@ -429,6 +423,11 @@ public class AnalizadorSintactico {
         addNum();
 
         revisarIdentificador(tokensComando);
+
+        tipo = tokensComando.get(numActual).getTipo();
+        if (tipo.equals("Identificador")) {
+            revisarIdentificador(tokensComando);
+        }
 
         do {
 
@@ -473,7 +472,7 @@ public class AnalizadorSintactico {
 
             revisarSigno(tokensComando, "=");
 
-            revisarDato(tokensComando);
+            revisarDatoUpdate(tokensComando);
 
             tipo = tokensComando.get(numActual).getTipo();
             palabra = tokensComando.get(numActual).getToken();
@@ -486,11 +485,39 @@ public class AnalizadorSintactico {
         tipo = tokensComando.get(numActual).getTipo();
         palabra = tokensComando.get(numActual).getToken();
         if (tipo.equals("Palabra Reservada") && palabra.equals("WHERE")) {
+            addNum();
             revisarWhere(tokensComando);
         }
 
         revisarSigno(tokensComando, ";");
 
+    }
+
+    private void revisarDatoUpdate(List<Token> tokensComando) throws SyntacticErrorException {
+
+        do {
+
+            tipo = tokensComando.get(numActual).getTipo();
+            palabra = tokensComando.get(numActual).getToken();
+            addNum();
+
+            if (!tipo.equals("Entero") && !tipo.equals("Decimal") && !tipo.equals("Fecha")
+                    && !tipo.equals("Cadena") && !tipo.equals("Booleano") && !tipo.equals("Identificador")) {
+                throw new SyntacticErrorException(
+                        "Se esperaba un token <Entero>, <Decimal>, <Fecha>, <Cadena>, <Booleano> o <Identificador>");
+            } else if (tipo.equals("Signo") && palabra.equals("(")) {
+
+                revisarDato(tokensComando);
+
+                revisarSigno(tokensComando, ")");
+            }
+
+            tipo = tokensComando.get(numActual).getTipo();
+            if (tipo.equals("Aritmetico") || tipo.equals("Relacional") || tipo.equals("Lógico")) {
+                addNum();
+            }
+
+        } while (tipo.equals("Aritmetico") || tipo.equals("Relacional") || tipo.equals("Lógico"));
     }
 
     private void revisarDelete(List<Token> tokensComando) throws SyntacticErrorException {
@@ -511,6 +538,7 @@ public class AnalizadorSintactico {
         tipo = tokensComando.get(numActual).getTipo();
         palabra = tokensComando.get(numActual).getToken();
         if (tipo.equals("Palabra Reservada") && palabra.equals("WHERE")) {
+            addNum();
             revisarWhere(tokensComando);
         }
 
@@ -574,8 +602,8 @@ public class AnalizadorSintactico {
         if (!tipo.equals("Palabra Reservada")) {
             throw new SyntacticErrorException("Secuencia de token invalida");
         }
-        if (!palabra.equals("REFERENCE")) {
-            throw new SyntacticErrorException("Se esperaba un token \"REFERENCE\"");
+        if (!palabra.equals("REFERENCES")) {
+            throw new SyntacticErrorException("Se esperaba un token \"REFERENCES\"");
         }
         addNum();
 
@@ -597,10 +625,8 @@ public class AnalizadorSintactico {
             palabra = tokensComando.get(numActual).getToken();
             addNum();
 
-            if (!tipo.equals("Entero") && !tipo.equals("Decimal") && !tipo.equals("Fecha")) {
-                throw new SyntacticErrorException(
-                        "Se esperaba un token <Entero>, <Decimal>, <Fecha>, <Cadena> o <Booleano>");
-            } else if (!tipo.equals("Cadena") && !tipo.equals("Booleano")) {
+            if (!tipo.equals("Entero") && !tipo.equals("Decimal") && !tipo.equals("Fecha")
+                    && !tipo.equals("Cadena") && !tipo.equals("Booleano")) {
                 throw new SyntacticErrorException(
                         "Se esperaba un token <Entero>, <Decimal>, <Fecha>, <Cadena> o <Booleano>");
             } else if (tipo.equals("Signo") && palabra.equals("(")) {
@@ -611,11 +637,11 @@ public class AnalizadorSintactico {
             }
 
             tipo = tokensComando.get(numActual).getTipo();
-            if (tipo.equals("Aritmetico") || tipo.equals("Racional") || tipo.equals("Lógico")) {
+            if (tipo.equals("Aritmetico") || tipo.equals("Relacional") || tipo.equals("Lógico")) {
                 addNum();
             }
 
-        } while (tipo.equals("Aritmetico") || tipo.equals("Racional") || tipo.equals("Lógico"));
+        } while (tipo.equals("Aritmetico") || tipo.equals("Relacional") || tipo.equals("Lógico"));
 
     }
 
@@ -627,9 +653,12 @@ public class AnalizadorSintactico {
             if (!palabra.equals("*")) {
                 throw new SyntacticErrorException("Secuencia de token invalida");
             }
+            addNum();
         } else {
 
             do {
+                tipo = tokensComando.get(numActual).getTipo();
+                palabra = tokensComando.get(numActual).getToken();
 
                 if (tipo.equals("Identificador")) {
                     addNum();
@@ -642,6 +671,8 @@ public class AnalizadorSintactico {
                         revisarIdentificador(tokensComando);
                     }
                 } else if (tipo.equals("Funcion de Agregación")) {
+                    addNum();
+
                     revisarSigno(tokensComando, "(");
 
                     revisarIdentificador(tokensComando);
@@ -660,6 +691,9 @@ public class AnalizadorSintactico {
 
                     tipo = tokensComando.get(numActual).getTipo();
                     palabra = tokensComando.get(numActual).getToken();
+                }
+                if (tipo.equals("Signo") && palabra.equals(",")) {
+                    addNum();
                 }
 
             } while (tipo.equals("Signo") && palabra.equals(","));
@@ -712,6 +746,18 @@ public class AnalizadorSintactico {
         } else if (palabra.equals("WHERE")) {
             revisarWhere(tokensComando);
         } else if (palabra.equals("GROUP") || palabra.equals("ORDER")) {
+
+            tipo = tokensComando.get(numActual).getTipo();
+            palabra = tokensComando.get(numActual).getToken();
+            if (!tipo.equals("Palabra Reservada")) {
+                throw new SyntacticErrorException("Secuencia de token invalida");
+            }
+            if (!palabra.equals("BY")) {
+                throw new SyntacticErrorException("Se esperaba un token \"BY\"");
+            }
+            addNum();
+    
+
             revisarIdentificador(tokensComando);
 
             tipo = tokensComando.get(numActual).getTipo();
@@ -773,43 +819,42 @@ public class AnalizadorSintactico {
 
             revisarDato(tokensComando);
 
-            tipo = tokensComando.get(numActual).getTipo();
-            palabra = tokensComando.get(numActual).getToken();
-            if (tipo.equals("Lógico")) {
-                if (!palabra.equals("AND") && !palabra.equals("OR")) {
-                    addNum();
-
-                    revisarIdentificador(tokensComando);
-
-                    tipo = tokensComando.get(numActual).getTipo();
-                    palabra = tokensComando.get(numActual).getToken();
-                    if (tipo.equals("Signo") && palabra.equals(".")) {
-                        addNum();
-
-                        revisarIdentificador(tokensComando);
-                    }
-
-                    tipo = tokensComando.get(numActual).getTipo();
-                    palabra = tokensComando.get(numActual).getToken();
-                    if (!tipo.equals("Signo") && !tipo.equals("Relacional")) {
-                        throw new SyntacticErrorException("Secuencia de token invalida");
-                    }
-                    if (!palabra.equals("=") && !palabra.equals("<") && !palabra.equals(">")) {
-                        throw new SyntacticErrorException("Se esperaba un token \"=\", \"<\" o \">\"");
-                    }
-                    addNum();
-
-                    revisarDato(tokensComando);
-
-                } else {
-                    throw new SyntacticErrorException("Se esperaba un token \"AND\" o \"OR\"");
-                }
-            }
-
         } else {
             throw new SyntacticErrorException("Se esperaba un token <Identificador> o \"(\"");
         }
-        addNum();
+
+        tipo = tokensComando.get(numActual).getTipo();
+        palabra = tokensComando.get(numActual).getToken();
+        if (tipo.equals("Lógico")) {
+            if (palabra.equals("AND") || palabra.equals("OR")) {
+                addNum();
+
+                revisarIdentificador(tokensComando);
+
+                tipo = tokensComando.get(numActual).getTipo();
+                palabra = tokensComando.get(numActual).getToken();
+                if (tipo.equals("Signo") && palabra.equals(".")) {
+                    addNum();
+
+                    revisarIdentificador(tokensComando);
+                }
+
+                tipo = tokensComando.get(numActual).getTipo();
+                palabra = tokensComando.get(numActual).getToken();
+                if (!tipo.equals("Signo") && !tipo.equals("Relacional")) {
+                    throw new SyntacticErrorException("Secuencia de token invalida");
+                }
+                if (!palabra.equals("=") && !palabra.equals("<") && !palabra.equals(">")) {
+                    throw new SyntacticErrorException("Se esperaba un token \"=\", \"<\" o \">\"");
+                }
+                addNum();
+
+                revisarDato(tokensComando);
+
+            } else {
+                throw new SyntacticErrorException("Se esperaba un token \"AND\" o \"OR\"");
+            }
+        }
 
     }
 
@@ -845,7 +890,7 @@ public class AnalizadorSintactico {
         if (!tipo.equals("Signo")) {
             throw new SyntacticErrorException("Secuencia de token invalida");
         }
-        if (!palabra.equals(signo1) || !palabra.equals(signo2)) {
+        if (!palabra.equals(signo1) && !palabra.equals(signo2)) {
             throw new SyntacticErrorException("Se esperaba un token \"" + signo1 + "\" o \"" + signo2 + "\"");
         }
         addNum();

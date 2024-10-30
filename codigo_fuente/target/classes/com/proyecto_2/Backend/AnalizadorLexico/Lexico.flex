@@ -40,7 +40,7 @@ import com.proyecto_2.Backend.Token.Token;
         } else if (match == 2) {
             addList(palabra, "Tipo de Dato", fila, columna, Color.MAGENTA);
         } else {
-            addList(palabra, "Error", fila, columna, Color.RED);
+            addError(palabra, fila, columna);
         }
     }
 
@@ -52,6 +52,23 @@ import com.proyecto_2.Backend.Token.Token;
         token.setFila(fila + 1);
         token.setColumna(columna + 1);
         token.setColor(color);
+
+        lista.add(token);
+    }
+
+    private void addError(String palabra, int fila, int columna) {
+        Token token = new Token();
+       
+        token.setToken(palabra);
+        token.setTipo("Error");
+        token.setFila(fila + 1);
+        token.setColumna(columna + 1);
+        token.setColor(Color.RED);
+        if (palabra.length() == 1) {
+            token.setDescripcion("Carácter no reconocido");
+        } else {
+            token.setDescripcion("Token no reconocido");
+        }
 
         lista.add(token);
     }
@@ -74,7 +91,7 @@ import com.proyecto_2.Backend.Token.Token;
 PALABRA = [A-Z]+
 ENTERO = [0-9]+
 FECHA = "'"[0-9]{4}"-"[0-9]{2}"-"[0-9]{2}"'"
-IDENTIFICADOR = [a-z]([a-z]|[0-9])+("_"([a-z]|[0-9])+)*
+IDENTIFICADOR = [a-z]([a-z]|[0-9])*("_"([a-z]|[0-9])+)*
 BOOLEANO = TRUE|FALSE
 AGREGACION = SUM|AVG|COUNT|MAX|MIN
 SIGNO = "("|")"|","|";"|"."|"="
@@ -104,4 +121,4 @@ SALTO = [\r\t\b\n]
 {ESPACIOS}                                  { /*Ignore*/ }
 {SALTO}                                     { /*Ignore*/ }
 
-.                                           { addList(yytext(), "Error", yyline, yycolumn, Color.RED); }
+.                                           { addError(yytext(), yyline, yycolumn); }

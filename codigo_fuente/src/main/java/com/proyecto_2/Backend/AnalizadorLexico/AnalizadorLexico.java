@@ -101,12 +101,12 @@ public class AnalizadorLexico {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\1\1\1\4\2\5\1\6"+
-    "\1\7\11\10\1\1\1\0\1\11\3\0\1\7\7\10"+
-    "\1\12\2\10\1\13\1\0\1\14\1\15\1\16\3\10"+
-    "\2\0\1\10\1\17\7\0\1\20";
+    "\1\7\11\10\1\11\1\0\1\12\3\0\1\7\7\10"+
+    "\1\13\2\10\2\0\1\14\1\15\1\16\3\10\1\0"+
+    "\1\10\1\17\7\0\1\20";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[56];
+    int [] result = new int[55];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -136,11 +136,11 @@ public class AnalizadorLexico {
     "\0\u0180\0\u01a0\0\u01c0\0\u01e0\0\u0200\0\40\0\u0220\0\u0240"+
     "\0\u0260\0\40\0\u0280\0\u02a0\0\u02c0\0\u02e0\0\u0300\0\u0320"+
     "\0\u0340\0\340\0\u0360\0\u0380\0\u03a0\0\u03c0\0\40\0\u0260"+
-    "\0\340\0\u03e0\0\u0400\0\u0420\0\u01e0\0\u0440\0\u0460\0\340"+
-    "\0\u0480\0\u04a0\0\u04c0\0\u04e0\0\u0500\0\u0520\0\u0540\0\40";
+    "\0\340\0\u03e0\0\u0400\0\u0420\0\u0440\0\u0460\0\340\0\u0480"+
+    "\0\u04a0\0\u04c0\0\u04e0\0\u0500\0\u0520\0\u0540\0\40";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[56];
+    int [] result = new int[55];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -172,21 +172,21 @@ public class AnalizadorLexico {
     "\16\0\13\14\1\35\6\14\16\0\1\36\21\14\16\0"+
     "\1\37\6\14\1\40\12\14\16\0\13\14\1\41\6\14"+
     "\16\0\14\14\1\42\5\14\16\0\17\14\1\43\2\14"+
-    "\16\0\14\14\1\44\5\14\13\0\1\45\25\0\1\45"+
-    "\4\25\1\26\37\25\1\26\4\25\1\46\26\25\1\47"+
-    "\1\0\36\47\11\0\1\50\42\0\3\14\1\42\16\14"+
-    "\16\0\6\14\1\51\13\14\16\0\17\14\1\52\2\14"+
-    "\16\0\10\14\1\53\11\14\16\0\21\14\1\51\16\0"+
-    "\12\14\1\51\7\14\16\0\16\14\1\42\3\14\16\0"+
-    "\11\14\1\51\10\14\16\0\17\14\1\54\2\14\13\0"+
-    "\1\45\24\0\1\55\1\45\4\25\1\26\4\25\1\56"+
-    "\26\25\14\0\12\14\1\57\7\14\16\0\15\14\1\54"+
-    "\4\14\16\0\4\14\1\60\15\14\2\0\4\25\1\26"+
-    "\4\25\1\61\26\25\14\0\16\14\1\51\3\14\2\0"+
-    "\4\25\1\26\2\25\1\62\34\25\1\26\4\25\1\63"+
-    "\32\25\1\26\4\25\1\64\32\25\1\26\2\25\1\65"+
-    "\34\25\1\26\4\25\1\66\32\25\1\26\4\25\1\67"+
-    "\32\25\1\70\33\25";
+    "\16\0\14\14\1\44\5\14\13\0\1\24\24\0\1\45"+
+    "\1\24\4\25\1\26\37\25\1\26\4\25\1\46\26\25"+
+    "\1\47\1\0\36\47\11\0\1\50\42\0\3\14\1\42"+
+    "\16\14\16\0\6\14\1\51\13\14\16\0\17\14\1\52"+
+    "\2\14\16\0\10\14\1\53\11\14\16\0\21\14\1\51"+
+    "\16\0\12\14\1\51\7\14\16\0\16\14\1\42\3\14"+
+    "\16\0\11\14\1\51\10\14\16\0\17\14\1\54\2\14"+
+    "\13\0\1\24\25\0\1\24\4\25\1\26\4\25\1\55"+
+    "\26\25\14\0\12\14\1\56\7\14\16\0\15\14\1\54"+
+    "\4\14\16\0\4\14\1\57\15\14\2\0\4\25\1\26"+
+    "\4\25\1\60\26\25\14\0\16\14\1\51\3\14\2\0"+
+    "\4\25\1\26\2\25\1\61\34\25\1\26\4\25\1\62"+
+    "\32\25\1\26\4\25\1\63\32\25\1\26\2\25\1\64"+
+    "\34\25\1\26\4\25\1\65\32\25\1\26\4\25\1\66"+
+    "\32\25\1\67\33\25";
 
   private static int [] zzUnpacktrans() {
     int [] result = new int[1376];
@@ -233,11 +233,11 @@ public class AnalizadorLexico {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\3\11\1\1\2\11\15\1\1\0\1\11\3\0"+
-    "\1\11\13\1\1\0\1\11\5\1\2\0\2\1\7\0"+
+    "\1\11\12\1\2\0\1\11\5\1\1\0\2\1\7\0"+
     "\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[56];
+    int [] result = new int[55];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -347,7 +347,7 @@ public class AnalizadorLexico {
         } else if (match == 2) {
             addList(palabra, "Tipo de Dato", fila, columna, Color.MAGENTA);
         } else {
-            addList(palabra, "Error", fila, columna, Color.RED);
+            addError(palabra, fila, columna);
         }
     }
 
@@ -359,6 +359,23 @@ public class AnalizadorLexico {
         token.setFila(fila + 1);
         token.setColumna(columna + 1);
         token.setColor(color);
+
+        lista.add(token);
+    }
+
+    private void addError(String palabra, int fila, int columna) {
+        Token token = new Token();
+       
+        token.setToken(palabra);
+        token.setTipo("Error");
+        token.setFila(fila + 1);
+        token.setColumna(columna + 1);
+        token.setColor(Color.RED);
+        if (palabra.length() == 1) {
+            token.setDescripcion("Carácter no reconocido");
+        } else {
+            token.setDescripcion("Token no reconocido");
+        }
 
         lista.add(token);
     }
@@ -780,7 +797,7 @@ public class AnalizadorLexico {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { addList(yytext(), "Error", yyline, yycolumn, Color.RED);
+            { addError(yytext(), yyline, yycolumn);
             }
           // fall through
           case 17: break;
@@ -820,17 +837,17 @@ public class AnalizadorLexico {
           // fall through
           case 24: break;
           case 9:
-            { addList(yytext(), "Cadena", yyline, yycolumn, Color.GREEN);
+            { addList(yytext(), "Identificador", yyline, yycolumn, Color.PINK);
             }
           // fall through
           case 25: break;
           case 10:
-            { addList(yytext(), "Lógico", yyline, yycolumn, Color.ORANGE);
+            { addList(yytext(), "Cadena", yyline, yycolumn, Color.GREEN);
             }
           // fall through
           case 26: break;
           case 11:
-            { addList(yytext(), "Identificador", yyline, yycolumn, Color.PINK);
+            { addList(yytext(), "Lógico", yyline, yycolumn, Color.ORANGE);
             }
           // fall through
           case 27: break;
