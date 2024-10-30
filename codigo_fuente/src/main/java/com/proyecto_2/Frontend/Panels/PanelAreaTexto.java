@@ -1,14 +1,18 @@
 package com.proyecto_2.Frontend.Panels;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 
 import javax.swing.*;
 
 import com.proyecto_2.Backend.ActionListeners.ActionListenerAnalizar;
 import com.proyecto_2.Backend.AnalizadorLexico.AnalizadorLexico;
+import com.proyecto_2.Backend.AnalizadorSintactico.AnalizadorSintactico;
 import com.proyecto_2.Backend.DocumentListeners.DocumentListenerNumeracion;
+import com.proyecto_2.Backend.Token.Token;
 import com.proyecto_2.Frontend.FramePrincipal;
 
 public class PanelAreaTexto extends JPanel {
@@ -82,5 +86,10 @@ public class PanelAreaTexto extends JPanel {
             e.printStackTrace();
         }
 
+        List<Token> tokens = aLexico.getLista();        
+
+        AnalizadorSintactico aSintactico = new AnalizadorSintactico(tokens);
+        aSintactico.analizar();
+        
     }
 }
