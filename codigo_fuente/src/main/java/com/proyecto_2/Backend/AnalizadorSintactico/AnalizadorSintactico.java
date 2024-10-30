@@ -8,12 +8,22 @@ import com.proyecto_2.Backend.Token.Token;
 public class AnalizadorSintactico {
 
     private List<Token> tokens;
+    private List<Token> tablas;
+    private List<Token> tablasModificadas;
     private int numToken = 0;
     private int numActual = 0;
     private String tipo, palabra;
+    private int cantidadCreate = 0;
+    private int cantidadAlter = 0;
+    private int cantidadInsert = 0;
+    private int cantidadSelect = 0;
+    private int cantidadUpdate = 0;
+    private int cantidadDelete = 0;
 
     public AnalizadorSintactico(List<Token> tokens) {
         this.tokens = tokens;
+        tablas = new ArrayList<>();
+        tablasModificadas = new ArrayList<>();
     }
 
     public void analizar() {
@@ -32,24 +42,31 @@ public class AnalizadorSintactico {
                     switch (tokensComando.get(0).getToken()) {
                         case "CREATE":
                             revisarCreate(tokensComando);
+                            cantidadCreate++;
                             break;
                         case "ALTER":
                             revisarAlter(tokensComando);
+                            cantidadAlter++;
                             break;
                         case "DROP":
                             revisarDrop(tokensComando);
+                            cantidadAlter++;
                             break;
                         case "INSERT":
                             revisarInsert(tokensComando);
+                            cantidadInsert++;
                             break;
                         case "SELECT":
                             revisarSelect(tokensComando);
+                            cantidadSelect++;
                             break;
                         case "UPDATE":
                             revisarUpdate(tokensComando);
+                            cantidadUpdate++;
                             break;
                         case "DELETE":
                             revisarDelete(tokensComando);
+                            cantidadDelete++;
                             break;
                     }
                 } catch (SyntacticErrorException e) {
@@ -61,6 +78,27 @@ public class AnalizadorSintactico {
                 numToken = numToken + tokensComando.size();
             }
         }
+    }
+
+    public List<Token> getTablas() {
+        return tablas;
+    }
+
+    public List<Token> getTablasModificadas() {
+        return tablasModificadas;
+    }
+
+    public List<Integer> getCantidades() {
+        List<Integer> lista = new ArrayList<>();
+
+        lista.add(cantidadCreate);
+        lista.add(cantidadAlter);
+        lista.add(cantidadInsert);
+        lista.add(cantidadSelect);
+        lista.add(cantidadUpdate);
+        lista.add(cantidadDelete);
+
+        return lista;
     }
 
     private void addNum() {
@@ -102,6 +140,7 @@ public class AnalizadorSintactico {
 
     private void revisarTable(List<Token> tokensComando) throws SyntacticErrorException {
         addNum();
+        int cantidad = 0;
 
         do {
 
@@ -109,6 +148,7 @@ public class AnalizadorSintactico {
             palabra = tokensComando.get(numActual).getToken();
             if (tipo.equals("Identificador")) {
                 revisarEstructuraDeclaracion(tokensComando);
+                cantidad++;
             } else if (tipo.equals("Palabra Reservada")) {
                 revisarEstructuraLlaves(tokensComando);
             } else {
@@ -120,6 +160,14 @@ public class AnalizadorSintactico {
         } while (!palabra.equals(")"));
 
         revisarSigno(tokensComando, ";");
+
+        Token token = new Token();
+        token.setToken(tokensComando.get(1).getToken());
+        token.setFila(tokensComando.get(0).getFila());
+        token.setColumna(tokensComando.get(0).getColumna());
+        token.setDescripcion(String.valueOf(cantidad));
+
+        tablas.add(token);
 
     }
 
@@ -296,6 +344,15 @@ public class AnalizadorSintactico {
         }
 
         revisarSigno(tokensComando, ";");
+
+        Token token = new Token();
+
+        token.setToken(tokensComando.get(2).getToken());
+        token.setDescripcion(tokensComando.get(3).getToken());
+        token.setFila(tokensComando.get(0).getFila());
+        token.setColumna(tokensComando.get(0).getColumna());
+
+        tablasModificadas.add(token);
 
     }
 
@@ -756,7 +813,6 @@ public class AnalizadorSintactico {
                 throw new SyntacticErrorException("Se esperaba un token \"BY\"");
             }
             addNum();
-    
 
             revisarIdentificador(tokensComando);
 
