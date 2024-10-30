@@ -9,6 +9,7 @@ public class Token {
     private int fila;
     private int columna;
     private String descripcion;
+    private String descripcionSintactico;
     private Color color;
 
     public String getToken() {
@@ -49,6 +50,14 @@ public class Token {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getDescripcionSintactico() {
+        return descripcionSintactico;
+    }
+
+    public void setDescripcionSintactico(String descripcionSintactico) {
+        this.descripcionSintactico = descripcionSintactico;
     }
 
     public Color getColor() {

@@ -68,13 +68,12 @@ public class AnalizadorLexico {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\10\0\3\1\2\2\1\1\22\0\1\3\6\0\1\4"+
-    "\2\5\2\6\1\5\1\7\1\10\1\6\2\11\1\12"+
-    "\7\11\1\0\1\5\1\13\1\14\1\13\2\0\1\15"+
-    "\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25"+
-    "\1\26\1\27\1\30\1\31\1\32\1\33\1\34\1\35"+
-    "\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
-    "\5\0\1\46\1\0\32\47\12\0\1\2\u01a2\0\2\2"+
-    "\326\0\u0100\2";
+    "\2\5\2\6\1\5\1\7\1\10\1\6\12\11\1\0"+
+    "\1\5\1\12\1\13\1\12\2\0\1\14\1\15\1\16"+
+    "\1\17\1\20\1\21\1\22\1\15\1\23\2\15\1\24"+
+    "\1\25\1\26\1\27\2\15\1\30\1\31\1\32\1\33"+
+    "\1\34\1\15\1\35\2\15\4\0\1\36\1\0\32\37"+
+    "\12\0\1\2\u01a2\0\2\2\326\0\u0100\2";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -102,13 +101,12 @@ public class AnalizadorLexico {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\1\1\1\4\2\5\1\6"+
-    "\1\7\25\1\1\10\1\0\1\11\3\0\1\7\3\0"+
-    "\1\12\3\0\1\12\23\0\1\13\16\0\1\14\1\15"+
-    "\1\0\1\13\1\16\54\0\1\17\11\0\1\20\35\0"+
-    "\1\21";
+    "\1\7\11\10\1\1\1\0\1\11\3\0\1\7\7\10"+
+    "\1\12\2\10\1\13\1\0\1\14\1\15\1\16\3\10"+
+    "\2\0\1\10\1\17\7\0\1\20";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[170];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -133,31 +131,16 @@ public class AnalizadorLexico {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\50\0\50\0\50\0\120\0\50\0\50\0\170"+
-    "\0\240\0\310\0\360\0\u0118\0\u0140\0\u0168\0\u0190\0\u01b8"+
-    "\0\u01e0\0\u0208\0\u0230\0\u0258\0\u0280\0\u02a8\0\u02d0\0\u02f8"+
-    "\0\u0320\0\u0348\0\u0370\0\u0398\0\u03c0\0\u03e8\0\u0410\0\u0438"+
-    "\0\u0460\0\50\0\u0488\0\u04b0\0\u04d8\0\50\0\u0500\0\u0528"+
-    "\0\u0550\0\u0578\0\u05a0\0\u05c8\0\u05f0\0\50\0\u0618\0\u0640"+
-    "\0\u0668\0\u0690\0\u06b8\0\u06e0\0\u0708\0\u0730\0\u0758\0\u0780"+
-    "\0\u07a8\0\u07d0\0\u07f8\0\u0820\0\u0848\0\u0870\0\u0898\0\u08c0"+
-    "\0\u08e8\0\u0910\0\u0938\0\u0960\0\u0988\0\u09b0\0\u09d8\0\u0a00"+
-    "\0\u0a28\0\u0a50\0\u0a78\0\u0aa0\0\u0ac8\0\u0af0\0\u0b18\0\u0b40"+
-    "\0\50\0\u04d8\0\u0b68\0\50\0\50\0\u0b90\0\u0bb8\0\u0be0"+
-    "\0\u0c08\0\u0c30\0\u0c58\0\u0c80\0\u0ca8\0\u0cd0\0\u0cf8\0\u0578"+
-    "\0\u0d20\0\u0d48\0\u0d70\0\u0d98\0\u0dc0\0\u0de8\0\u0e10\0\u0e38"+
-    "\0\u0e60\0\u0e88\0\u0eb0\0\u0ed8\0\u0f00\0\u0f28\0\u0f50\0\u0f78"+
-    "\0\u0fa0\0\u0fc8\0\u0ff0\0\u1018\0\u1040\0\u1068\0\u1090\0\u10b8"+
-    "\0\u10e0\0\u1108\0\u1130\0\u1158\0\u1180\0\u11a8\0\u11d0\0\u11f8"+
-    "\0\u1220\0\50\0\u1248\0\u1270\0\u1298\0\u12c0\0\u12e8\0\u1310"+
-    "\0\u1338\0\u1360\0\u1388\0\50\0\u13b0\0\u13d8\0\u1400\0\u1428"+
-    "\0\u1450\0\u1478\0\u14a0\0\u14c8\0\u14f0\0\u1518\0\u1540\0\u1568"+
-    "\0\u1590\0\u15b8\0\u15e0\0\u1608\0\u1630\0\u1658\0\u1680\0\u16a8"+
-    "\0\u16d0\0\u16f8\0\u1720\0\u1748\0\u1770\0\u1798\0\u17c0\0\u17e8"+
-    "\0\u1810\0\50";
+    "\0\0\0\40\0\40\0\40\0\100\0\40\0\40\0\140"+
+    "\0\200\0\240\0\300\0\340\0\u0100\0\u0120\0\u0140\0\u0160"+
+    "\0\u0180\0\u01a0\0\u01c0\0\u01e0\0\u0200\0\40\0\u0220\0\u0240"+
+    "\0\u0260\0\40\0\u0280\0\u02a0\0\u02c0\0\u02e0\0\u0300\0\u0320"+
+    "\0\u0340\0\340\0\u0360\0\u0380\0\u03a0\0\u03c0\0\40\0\u0260"+
+    "\0\340\0\u03e0\0\u0400\0\u0420\0\u01e0\0\u0440\0\u0460\0\340"+
+    "\0\u0480\0\u04a0\0\u04c0\0\u04e0\0\u0500\0\u0520\0\u0540\0\40";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[170];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -181,64 +164,32 @@ public class AnalizadorLexico {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\1\4\1\3\1\5\1\6\1\7\1\10"+
-    "\1\6\2\11\1\12\1\6\1\13\1\14\1\15\1\16"+
-    "\1\17\1\20\1\21\1\2\1\22\1\23\1\24\1\25"+
-    "\1\26\1\27\1\30\1\31\1\2\1\32\1\33\1\34"+
-    "\1\35\1\36\1\37\3\2\1\40\50\0\4\41\1\42"+
-    "\4\41\2\43\35\41\7\0\1\44\50\0\1\45\2\11"+
-    "\51\0\1\46\53\0\1\47\7\0\1\50\1\0\1\51"+
-    "\4\0\1\52\2\0\1\53\32\0\1\54\5\0\1\55"+
-    "\11\0\1\56\17\0\1\57\15\0\1\60\2\0\1\61"+
-    "\26\0\1\62\3\0\1\63\14\0\1\64\55\0\1\65"+
-    "\20\0\1\66\15\0\1\67\2\0\1\70\47\0\1\71"+
-    "\33\0\1\56\7\0\1\72\50\0\1\73\35\0\1\74"+
-    "\53\0\1\75\37\0\1\76\7\0\1\77\55\0\1\100"+
-    "\5\0\1\101\40\0\1\56\3\0\1\102\47\0\1\103"+
-    "\32\0\1\104\47\0\1\105\17\0\1\106\23\0\1\107"+
-    "\3\0\1\110\14\0\1\111\6\0\1\112\34\0\1\113"+
-    "\1\0\1\114\30\0\1\115\56\0\1\116\71\0\1\117"+
-    "\1\40\4\41\1\42\47\41\1\42\4\41\2\120\35\41"+
-    "\1\121\1\0\46\121\11\0\2\122\55\0\1\56\67\0"+
-    "\1\123\27\0\1\124\46\0\1\56\53\0\1\125\47\0"+
-    "\1\126\57\0\1\127\53\0\1\130\40\0\1\131\1\0"+
-    "\1\132\6\0\1\133\27\0\1\134\66\0\1\135\26\0"+
-    "\1\136\10\0\1\137\6\0\1\140\43\0\1\141\41\0"+
-    "\1\142\52\0\1\143\55\0\1\144\44\0\1\145\47\0"+
-    "\1\146\53\0\1\147\1\150\34\0\1\151\67\0\1\56"+
-    "\33\0\1\152\62\0\1\125\35\0\1\125\55\0\1\124"+
-    "\37\0\1\153\37\0\1\123\54\0\1\154\44\0\1\155"+
-    "\55\0\1\156\5\0\1\157\1\0\1\56\40\0\1\125"+
-    "\34\0\1\160\75\0\1\161\44\0\1\162\42\0\1\163"+
-    "\40\0\1\164\42\0\1\134\57\0\1\165\5\0\1\166"+
-    "\32\0\1\167\75\0\1\40\4\41\1\42\4\41\2\170"+
-    "\35\41\21\0\1\171\53\0\1\172\52\0\1\173\36\0"+
-    "\1\174\71\0\1\175\45\0\1\176\42\0\1\177\32\0"+
-    "\1\200\47\0\1\201\3\0\1\202\53\0\1\203\43\0"+
-    "\1\200\62\0\1\56\52\0\1\204\47\0\1\162\31\0"+
-    "\1\205\57\0\1\56\57\0\1\141\27\0\1\206\47\0"+
-    "\1\207\11\0\1\56\46\0\1\56\42\0\1\204\52\0"+
-    "\1\56\50\0\1\210\37\0\1\211\47\0\1\212\53\0"+
-    "\1\213\52\0\1\163\57\0\1\202\30\0\1\214\47\0"+
-    "\1\56\63\0\1\215\53\0\1\216\25\0\1\217\66\0"+
-    "\1\163\11\0\4\41\1\42\4\41\2\220\35\41\36\0"+
-    "\1\56\43\0\1\161\36\0\1\221\43\0\1\222\63\0"+
-    "\1\151\56\0\1\223\47\0\1\125\47\0\1\163\25\0"+
-    "\1\224\62\0\1\213\56\0\1\56\34\0\1\225\60\0"+
-    "\1\204\34\0\1\226\41\0\1\227\70\0\1\230\30\0"+
-    "\1\204\45\0\1\231\73\0\1\163\27\0\1\232\52\0"+
-    "\1\233\23\0\4\41\1\42\2\41\1\234\40\41\15\0"+
-    "\1\235\52\0\1\163\65\0\1\236\26\0\1\237\55\0"+
-    "\1\151\45\0\1\240\64\0\1\74\32\0\1\241\56\0"+
-    "\1\202\56\0\1\56\25\0\1\240\32\0\4\41\1\42"+
-    "\4\41\2\242\35\41\32\0\1\202\32\0\1\243\71\0"+
-    "\1\163\46\0\1\202\43\0\1\244\15\0\4\41\1\42"+
-    "\4\41\2\245\35\41\25\0\1\246\41\0\1\216\30\0"+
-    "\4\41\1\42\2\41\1\247\40\41\32\0\1\204\15\0"+
-    "\4\41\1\42\4\41\2\250\41\41\1\42\5\41\1\251"+
-    "\41\41\1\252\43\41";
+    "\1\6\1\11\1\12\1\6\1\13\1\14\1\15\2\14"+
+    "\1\16\3\14\1\17\1\20\1\21\1\14\1\22\1\23"+
+    "\3\14\1\2\1\24\40\0\4\25\1\26\4\25\1\27"+
+    "\26\25\7\0\1\30\40\0\1\31\1\11\41\0\1\32"+
+    "\40\0\12\14\1\33\5\14\1\34\1\14\16\0\22\14"+
+    "\16\0\13\14\1\35\6\14\16\0\1\36\21\14\16\0"+
+    "\1\37\6\14\1\40\12\14\16\0\13\14\1\41\6\14"+
+    "\16\0\14\14\1\42\5\14\16\0\17\14\1\43\2\14"+
+    "\16\0\14\14\1\44\5\14\13\0\1\45\25\0\1\45"+
+    "\4\25\1\26\37\25\1\26\4\25\1\46\26\25\1\47"+
+    "\1\0\36\47\11\0\1\50\42\0\3\14\1\42\16\14"+
+    "\16\0\6\14\1\51\13\14\16\0\17\14\1\52\2\14"+
+    "\16\0\10\14\1\53\11\14\16\0\21\14\1\51\16\0"+
+    "\12\14\1\51\7\14\16\0\16\14\1\42\3\14\16\0"+
+    "\11\14\1\51\10\14\16\0\17\14\1\54\2\14\13\0"+
+    "\1\45\24\0\1\55\1\45\4\25\1\26\4\25\1\56"+
+    "\26\25\14\0\12\14\1\57\7\14\16\0\15\14\1\54"+
+    "\4\14\16\0\4\14\1\60\15\14\2\0\4\25\1\26"+
+    "\4\25\1\61\26\25\14\0\16\14\1\51\3\14\2\0"+
+    "\4\25\1\26\2\25\1\62\34\25\1\26\4\25\1\63"+
+    "\32\25\1\26\4\25\1\64\32\25\1\26\2\25\1\65"+
+    "\34\25\1\26\4\25\1\66\32\25\1\26\4\25\1\67"+
+    "\32\25\1\70\33\25";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[6200];
+    int [] result = new int[1376];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -281,13 +232,12 @@ public class AnalizadorLexico {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\3\11\1\1\2\11\31\1\1\0\1\11\3\0"+
-    "\1\11\3\0\1\1\3\0\1\11\23\0\1\1\16\0"+
-    "\1\11\1\1\1\0\2\11\54\0\1\11\11\0\1\11"+
-    "\35\0\1\11";
+    "\1\0\3\11\1\1\2\11\15\1\1\0\1\11\3\0"+
+    "\1\11\13\1\1\0\1\11\5\1\2\0\2\1\7\0"+
+    "\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[170];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -368,8 +318,38 @@ public class AnalizadorLexico {
 
 // Codigo Java
 
+    private final String[] RESERVADA_WORD = {"CREATE", "DATABASE", "TABLE", "KEY", "NULL", "PRIMARY", "UNIQUE", "FOREIGN", "REFERENCES", "ALTER", "ADD",
+            "COLUMN", "TYPE", "DROP", "CONSTRAINT", "IF", "EXIST", "EXISTS", "CASCADE", "ON", "DELETE", "SET", "UPDATE", "INSERT", "INTO", "VALUES",
+            "SELECT", "FROM", "WHERE", "AS", "GROUP", "ORDER", "BY", "ASC", "DESC", "LIMIT", "JOIN"};
+
+    private final String[] TIPO_WORD = {"INTEGER", "BIGINT", "VARCHAR", "DECIMAL", "DATE", "TEXT", "BOOLEAN", "SERIAL", "BIT", "CHAR", "DATETIME",
+            "FLOAT", "BINARY", "BLOB", "ENUM", "INT", "DOUBLE", "TIMESTAMP", "TIME", "NUMERIC"};
+
     private List<Token> lista = new ArrayList<>();
-    private List<Token> listaErrores = new ArrayList<>();
+
+    private void compararPalabra(String palabra, int fila, int columna){
+        int match = 0;
+
+        for (int i = 0; i < RESERVADA_WORD.length; i++) {
+            if (palabra.equals(RESERVADA_WORD[i])) {
+                match = 1;
+            }
+        }
+
+        for (int i = 0; i < TIPO_WORD.length; i++) {
+            if (palabra.equals(TIPO_WORD[i])) {
+                match = 2;
+            }
+        }
+
+        if (match == 1) {
+            addList(palabra, "Palabra Reservada", fila, columna, Color.ORANGE);
+        } else if (match == 2) {
+            addList(palabra, "Tipo de Dato", fila, columna, Color.MAGENTA);
+        } else {
+            addList(palabra, "Error", fila, columna, Color.RED);
+        }
+    }
 
     private void addList(String palabra, String tipo, int fila, int columna, Color color) {
         Token token = new Token();
@@ -383,31 +363,10 @@ public class AnalizadorLexico {
         lista.add(token);
     }
 
-    private void addListaErrores(String palabra, int fila, int columna, int tamaño) {
-        Token token = new Token();
-        
-        token.setToken(palabra);
-        token.setTipo("Error");
-        token.setFila(fila + 1);
-        token.setColumna(columna + 1);
-
-        if (tamaño > 1) {
-            token.setDescripcion("Token no reconocido");
-        } else {
-            token.setDescripcion("Carácter no reconocido");
-        }
-
-        listaErrores.add(token);
-    }
-
     public List<Token> getLista(){
         return lista;
     }
     
-    public List<Token> getListaErrores(){
-        return listaErrores;
-    }
-
 
 
   /**
@@ -821,90 +780,85 @@ public class AnalizadorLexico {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { addListaErrores(yytext(), yyline, yycolumn, yylength());
+            { addList(yytext(), "Error", yyline, yycolumn, Color.RED);
             }
           // fall through
-          case 18: break;
+          case 17: break;
           case 2:
             { /*Ignore*/
             }
           // fall through
-          case 19: break;
+          case 18: break;
           case 3:
             { System.out.print(yytext());
             }
           // fall through
-          case 20: break;
+          case 19: break;
           case 4:
             { addList(yytext(), "Signo", yyline, yycolumn, Color.BLACK);
             }
           // fall through
-          case 21: break;
+          case 20: break;
           case 5:
             { addList(yytext(), "Aritmetico", yyline, yycolumn, Color.BLACK);
             }
           // fall through
-          case 22: break;
+          case 21: break;
           case 6:
             { addList(yytext(), "Entero", yyline, yycolumn, Color.BLUE);
             }
           // fall through
-          case 23: break;
+          case 22: break;
           case 7:
             { addList(yytext(), "Relacional", yyline, yycolumn, Color.BLACK);
             }
           // fall through
-          case 24: break;
+          case 23: break;
           case 8:
-            { addList(yytext(), "Identificador", yyline, yycolumn, Color.PINK);
+            { compararPalabra(yytext(), yyline, yycolumn);
             }
           // fall through
-          case 25: break;
+          case 24: break;
           case 9:
             { addList(yytext(), "Cadena", yyline, yycolumn, Color.GREEN);
             }
           // fall through
-          case 26: break;
+          case 25: break;
           case 10:
-            { addList(yytext(), "Create", yyline, yycolumn, Color.ORANGE);
+            { addList(yytext(), "Lógico", yyline, yycolumn, Color.ORANGE);
+            }
+          // fall through
+          case 26: break;
+          case 11:
+            { addList(yytext(), "Identificador", yyline, yycolumn, Color.PINK);
             }
           // fall through
           case 27: break;
-          case 11:
-            { addList(yytext(), "Logico", yyline, yycolumn, Color.ORANGE);
-            }
-          // fall through
-          case 28: break;
           case 12:
             { addList(yytext(), "Comentario", yyline, yycolumn, Color.GRAY);
             }
           // fall through
-          case 29: break;
+          case 28: break;
           case 13:
             { addList(yytext(), "Decimal", yyline, yycolumn, Color.BLUE);
             }
           // fall through
-          case 30: break;
+          case 29: break;
           case 14:
-            { addList(yytext(), "Funcion de Agregacion", yyline, yycolumn, Color.BLUE);
+            { addList(yytext(), "Funcion de Agregación", yyline, yycolumn, Color.BLUE);
             }
           // fall through
-          case 31: break;
+          case 30: break;
           case 15:
-            { addList(yytext(), "Tipo de Date", yyline, yycolumn, Color.MAGENTA);
-            }
-          // fall through
-          case 32: break;
-          case 16:
             { addList(yytext(), "Booleano", yyline, yycolumn, Color.BLUE);
             }
           // fall through
-          case 33: break;
-          case 17:
+          case 31: break;
+          case 16:
             { addList(yytext(), "Fecha", yyline, yycolumn, Color.YELLOW);
             }
           // fall through
-          case 34: break;
+          case 32: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
