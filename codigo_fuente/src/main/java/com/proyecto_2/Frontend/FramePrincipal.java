@@ -38,7 +38,7 @@ public class FramePrincipal extends JFrame {
 
         JMenuBar jMenuBar = new JMenuBar();
         JMenu jM1 = new JMenu("Archivo");
-        JMenu jM2 = new JMenu("Acciones");
+        JMenu jM2 = new JMenu("Reportes");
 
         jMenuBar.add(jM1);
         jMenuBar.add(jM2);
